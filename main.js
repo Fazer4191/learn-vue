@@ -1,6 +1,4 @@
-Vue.component('message', {
-    props: ['title', 'body'],
-
+Vue.component('modal', {
     data() {
         return {
             isVisible: true
@@ -8,18 +6,22 @@ Vue.component('message', {
     },
 
     template: `
-        <article class="message" v-show="isVisible">
-            <div class="message-header">
-                {{ title }}
-                <button type="button" @click="isVisible = false" class="delete"></button>
-            </div>
-            <div class="message-body">
-                {{ body}}
-            </div>
-        </article>
+        <div class="modal is-active">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+              <div class="box">
+                  <slot></slot>
+              </div>
+          </div>
+          <button class="modal-close" @click="$emit('close')"></button>
+        </div>
     `
 });
 
 var app = new Vue({
-    el: '#root'
+    el: '#root',
+
+    data: {
+        showModal: false
+    }
 });

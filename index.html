@@ -9,7 +9,11 @@
     <body>
 
         <div id="root" class="container">
-            <message title="Hello World" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></message>
+            <modal v-if="showModal" @close="showModal = false">
+                <p>Any other Bulma elements you want</p>
+            </modal>
+
+            <button @click=" showModal = true" class="button is-primary">Show Modal</button>
         </div>
 
         <script src="https://unpkg.com/vue"></script>
